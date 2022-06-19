@@ -1,10 +1,15 @@
-﻿cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.15)
 
-project ("Snake")
+project (Snake)
 
-add_executable (Snake "Snake.cpp" "Snake.h")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Snake PROPERTY CXX_STANDARD 20)
-endif()
+find_package(OpenCV REQUIRED)
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+add_executable (Snake src/Snake.cpp)
+
+target_link_libraries(Snake ${OpenCV_LIBS})
 
